@@ -2,6 +2,7 @@ import pygame
 from constants import *
 from player import Player
 from AsteroidField import *
+import sys
 
 def main():
     pygame.init()
@@ -34,6 +35,11 @@ Screen height: {SCREEN_HEIGHT}""")
         updatable.update(dt)
         for sprite in drawable:
             sprite.draw(screen)
+        for asteroid in asteroids:
+            if asteroid.collision(player):
+                print(f"Game Over!")
+                sys.exit()
+                
         pygame.display.flip()
 
         dt = clock.tick(60) / 1000
