@@ -43,7 +43,11 @@ Screen height: {SCREEN_HEIGHT}""")
             if asteroid.collision(player):
                 print(f"Game Over!")
                 sys.exit()
-                
+
+            for shot in shots:
+                if asteroid.collision(shot):
+                    asteroid.split()
+                    shot.kill()        
         pygame.display.flip()
 
         dt = clock.tick(60) / 1000
